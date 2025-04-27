@@ -227,10 +227,47 @@ Algorithm: 1.Input the number of subjects.
 
 Program:
 
-//type your code here
+```
+
+#include <stdio.h>
+#include <stdlib.h>
+struct Subject
+{
+char name[50];
+int marks;
+};
+int main()
+{
+int n, i;
+struct Subject *s;
+printf("Enter the number of subjects: ");
+scanf("%d", &n);
+s = (struct Subject *)malloc(n * sizeof(struct Subject));
+if (s == NULL)
+{
+printf("Memory allocation failed.\n");
+return 1;
+}
+for (i = 0; i < n; i++)
+{
+printf("\nEnter details for subject %d:\n", i + 1);
+printf("Subject Name: ");
+scanf(" %[^\n]", s[i].name);
+printf("Marks: ");
+scanf("%d", &s[i].marks);
+}
+printf("\n--- Subject Details ---\n");
+for (i = 0; i < n; i++) {
+printf("Subject %d: %s - %d marks\n", i + 1, s[i].name, s[i].marks);
+}
+free(s);
+return 0;
+}
+```
 
 Output:
 
+![WhatsApp Image 2025-04-27 at 15 34 20_3c969076](https://github.com/user-attachments/assets/d35e0f95-ec53-4f1d-acda-7405dc2018d2)
 
 
 Result: Thus, the program is verified successfully
