@@ -1,162 +1,211 @@
 # Advanced-C-Lab-Manual
 
-EXP NO:11 C PROGRAM TO DISPLAY STACK ELEMENTS USING AN ARRAY.
-
-Aim: To write a C program to display stack elements using an array. Algorithm:
-
-Include Necessary Header Files
-Declare Global Variables
-Define the Display Function
-Main Function (or Other Relevant Code)
-Initialize the stack and top as needed.
-Perform stack operations (push, pop, etc.).
-Use the display function to visualize the stack's contents
+ C PROGRAM TO SEARCH A GIVEN ELEMENT IN THE GIVEN LINKED LIST. Aim: To write a C program to search a given element in the given linked list.
+Algorithm:
+1.	Define the structure for a node in a linked list.
+2.	Define the search function to find a specific character in the linked list.
+3.	Initialize the head of the linked list as needed.
+4.	Call the search function and perform other linked list operations as needed.
 Program:
 ```
-float stack[100];
-int top=-1;
+struct Node{
+    char data; 
+    struct Node *next;
+}*head;
+void search(char data)
+{
+  struct Node *ptr=head;
+  char temp=data;
+  int count=1;
+  int flag=0;
+  while(ptr!=NULL)
+  {
+      if(ptr->data==temp)
+      {
+          printf("item %c found at location %d",ptr->data,count);
+          flag=1;
+      }
+      count++;
+      ptr=ptr->next;
+  }
+  if(flag==0)
+    {
+        printf("Item not found");
+    }
+ 
+ 
+}
+```
+Output:
+ ![image](https://github.com/user-attachments/assets/2072dd48-9c66-44ef-a001-c88c22fb17f5)
+Result: 
+Thus, the program to search a given element in the given linked list is verified successfully.
+
+EXP NO:17 
+PROGRAM TO INSERT A NODE IN A LINKED LIST. Aim: To write a C program to insert a node in a linked list.
+ Algorithm:
+1.	Define the structure for a node in a linked list
+2.	Define the insert function to insert a new node with character data at the end of the linked list.
+3.	Initialize the head of the linked list as needed.
+4.	Call the insert function and perform other linked list operations as needed.
+Program:
+```
+struct Node{
+    char data; 
+    struct Node *next;
+}*head;
+void insert(char data)
+{
+    struct Node *n=malloc(sizeof(struct Node *));
+    if(n==NULL)
+    {
+        printf("Memory allocation failed!\n");
+    }
+    n->data=data;
+    n->next=NULL;
+    if(head == NULL)
+    {
+        head=n;
+    }
+    else
+    {
+        struct Node *temp=head;
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        temp->next=n;
+    }
+}
+```
+Output:
+ ![image](https://github.com/user-attachments/assets/9bfc1ae9-594e-463c-8bdc-de1de1c1fd47)
+
+Result: 
+Thus, the program to insert a node in a linked list is verified successfully.
+
+EXP NO:18
+ C PROGRAM TO TRAVERSE A DOUBLY LINKED LIST Aim: To write a C program to traverse a doubly linked list.
+Algorithm:
+1.	Initialize a temporary pointer (temp) to the head of the list.
+2.	Use a while loop to traverse the list until the end (temp == NULL) is reached.
+3.	Inside the loop, print the data of the current node.
+4.	Move to the next node by updating the temp pointer to point to the next node (temp = temp->next).
+Program:
+```
+struct Node
+{
+    struct Node *prev;
+    struct Node *next;
+    int data;
+}*head;
 void display()
 {
- for(int i=top;i>=0;i--)
- {
- printf("%.1f ",stack[i]);
- }
-} 
-
-```
-
-
-Output:
-
-![image](https://github.com/user-attachments/assets/b4e05e21-2717-41f9-af36-32cf636c8c28)
-
-
-Result: Thus, the program to display stack elements using an array is verified successfully.
-
-EXP NO:12 PROGRAM TO PUSH THE GIVEN ELEMENT IN TO A STACK USING ARRAY. Aim: To create a C program to push the given element in to a stack using array. Algorithm:
-
-Declare global variables for the stack size, top index, and the stack itself.
-Define the push function to add a floating-point number to the stack.
-Initialize the stack size, top index, and the stack itself.
-Call the push function as needed.
-Program:
-
-```
-char stack[100];
-int size=3,top=-1,i;
-void push (char data)
-{
- if(top==size-1)
- {
- printf("stack is full\n");
- }
- else
- {
- top=top+1;
- stack[top]=data;
- }
+    struct Node *ptr=head;
+    while(ptr!=NULL)
+    {
+        printf("%d ",ptr->data);
+        ptr=ptr->next;
+    }   
+    
 }
 ```
-
 Output:
-![image](https://github.com/user-attachments/assets/12e5e4d8-c0b3-4d20-9857-d67078ac05d0)
+ 
+![image](https://github.com/user-attachments/assets/02b07539-4a91-4232-b126-a30bfdc42327)
+
+Result: 
+Thus, the program to traverse a doubly linked list is verified successfully.
 
 
-Result: Thus, the program to push the given element in to a stack using array is verified successfully
 
-EXP NO:13 C PROGRAM TO DISPLAY QUEUE ELEMENTS USING ARRAY. Aim: To write a C program to display queue elements using array
-
+EXP NO:19 
+C PROGRAM TO INSERT AN ELEMENT IN DOUBLY LINKED LIST Aim: To write a C program to insert an element in doubly linked list
 Algorithm:
-
-Declare global variables for the queue, rear, front, and iteration.
-Define the display function to print the elements of the queue.
-Initialize the queue, rear, and front as needed.
-Call the display function and perform other queue operations as needed.
+1.	Create a new node (newNode) and allocate memory for it.
+2.	Set the data of the new node to the provided value.
+3.	If the list is empty, set the new node as the head.
+4.	If the list is not empty, traverse the list to find the last node.
+5.	Set the new node's prev pointer to the last node and update the last node's next pointer to the new node.
 Program:
 ```
-int queue[50], rear=-1, front=-1;
-void display()
+struct Node
 {
- if(rear==-1 && front==-1)
- {
- printf("No elements to display");
- }
- else
- {
- for(int i=front;i<=rear;i++)
- {
- printf("%d\n",queue[i]);
- }
- }
+    struct Node *prev;
+    struct Node *next;
+    float data;
+}*head;
+
+void insert(float data)
+{
+    struct Node*n=malloc(sizeof(struct Node));
+    if(n==head)
+    {
+        printf("Memory allocation failed!\n");
+    }
+    n->data=data;
+    n->next=NULL;
+    n->prev=NULL;
+    if(head==NULL)
+    {
+        head=n;
+    }
+    else
+    {
+        struct Node *temp=head;
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        temp->next=n;
+        n->prev=NULL;
+    }
 }
 ```
-
 Output:
+ ![image](https://github.com/user-attachments/assets/ab164717-d67f-4df1-92c8-eb08b5fdfcea)
 
-![image](https://github.com/user-attachments/assets/71ddfc21-9605-4c66-ac6c-3171d5ef9ded)
+Result:
+ Thus, the program to insert an element in doubly linked list is verified successfully.
 
-
-Result: Thus, the program to display queue elements using array is verified successfully.
-
-EXP NO:14 C PROGRAM TO INSERT ELEMENTS IN QUEUE USING ARRAY. Aim: To write a C program to insert elements in queue using array.
-
+EXP NO:20 
+C FUNCTION TO DELETE A GIVEN ELEMENT IN THE GIVEN LINKED LIST
+Aim: To write a C function that deletes a given element from a linked list.
 Algorithm:
-
-Declare global variables for the size, rear, front, and the queue itself.
-Define the enqueue function to add a float to the queue.
-Initialize the rear, front, and size of the queue as needed.
-Call the enqueue function as needed.
+1.	Check if the Linked List is Empty: o If the head of the linked list is NULL, print a message indicating the list is empty and exit the function.
+2.	Traverse the Linked List: o Start from the head node and iterate through the list to find the node that contains the given element (data).
+3.	Handle Deletion of the First Node: o If the element to be deleted is found in the head node:  Update the head of the linked list to point to the next node (i.e., head = head->next).  Free the memory allocated to the node to be deleted.  Exit the function.
+4.	Traverse and Delete from the Middle or End: o If the element is not in the head node, continue traversing the list by checking each node’s next pointer. o When the node with the element is found, update the previous node’s next pointer to point to the next node of the node to be deleted (prev->next = current->next). o Free the memory allocated to the node to be deleted.
+5.	Handle the Case when the Element is Not Found: o If the element is not found in any node, print a message indicating the element is not present in the list.
+6.	End the Function.
 Program:
 ```
-int rear,front;
-int queue[50];
-void enqueue(int data)
+struct Node
 {
- if(rear==-1 && front==-1)
- {
- rear+=1;
- front=0;
- }
- else
- {
- rear+=1;
- }
- queue[rear]=data;
-} 
-```
-
-
-Output:
-![image](https://github.com/user-attachments/assets/822dd275-04b4-47bc-8ad7-ff56d8c124a5)
-
-
-Result: Thus, the program to insert elements in queue using array is verified successfully.
-
-EXP NO:15 C FUNCTION TO DELETE ELEMENTS IN QUEUE USING ARRAY
-
-Aim:
-
-To create a function in C that deletes an element from a queue implemented using an array.
-
-Algorithm:
-
-Check if the Queue is Empty o If the front pointer is -1, it means the queue is empty, and there are no elements to delete. Print a message indicating that the queue is empty.
-Delete the Front Element o If the queue is not empty, the element at the front index is deleted. o Increment the front pointer by 1 to remove the element and point to the next element in the queue.
-Check if the Queue Becomes Empty After Deletion: o After deletion, check if the front pointer has passed the rear pointer (front > rear). If this is true, reset both front and rear to -1, indicating that the queue is now empty.
-End the Function.
-Program:
-
-```
-int front, rear;
-void dequeue()
+    struct Node *prev;
+    struct Node *next;
+    char data;
+}*head;
+void delete()
 {
- front=front+1;
+    if(head ==NULL)
+    {
+        printf("UNDERFLOW\n");
+    }
+    else
+    {
+        struct Node *ptr=head;
+        head=head->next;
+        free(ptr);
+        ptr=NULL;
+        printf("Node deleted\n");
+    }
+    
 }
 ```
-
 Output:
-![image](https://github.com/user-attachments/assets/5161f7e1-aa2d-46f7-94fe-10c2dac8f3ab)
+ ![image](https://github.com/user-attachments/assets/bd8ca3ec-e524-4904-9897-c7d42523e29f)
 
-
-Result: Thus, the function that deletes an element from a queue implemented using an array is verified successfully.
+Result: 
+Thus, the function that deletes a given element from a linked list is verified successfully.
 
